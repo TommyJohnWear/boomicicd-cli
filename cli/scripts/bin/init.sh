@@ -139,7 +139,7 @@ echo "export BOOMI_CONTAINERNAME='$atomName'" >> /home/$serviceUserName/.profile
 i=0
 while [ $i -lt 10 ]
 do
-        viewfile_count=$(find -f $ATOM_HOME/bin/views/*molecule_$i* 2> /dev/null | wc -l)
+        viewfile_count=$(ls $ATOM_HOME/bin/views/*molecule_$i* 2> /dev/null | wc -l)
         if [ ${viewfile_count} -eq 0 ];  then
                 ATOM_LOCALHOSTID=molecule_$i;
                 break;
