@@ -17,6 +17,7 @@ fi
 export h1="Content-Type: application/json"
 export h2="Accept: application/json"
 export WORKSPACE=`pwd`
+
 # Keys that can change
 export VERBOSE="false" # Bash verbose output; set to true only for testing, will slow execution.
 export SLEEP_TIMER=0.2 # Delays curl request to the platform to set the rate under 5 requests/second

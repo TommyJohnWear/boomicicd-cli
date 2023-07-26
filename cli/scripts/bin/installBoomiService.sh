@@ -38,8 +38,4 @@ chown -R $serviceUserName:$serviceUserName /etc/jmxremote/jmxremote.*
 echo "setup atom.service ..."
 systemctl enable atom
 systemctl start atom
-systemctl is-active --quiet atom && echo Service is running
-
-
-
-
+systemctl is-active --quiet atom && echo "Service is running..."
