@@ -75,6 +75,7 @@ echo "git clone https://github.com/$GitOrgName/boomicicd-cli..."
 git clone https://github.com/$GitOrgName/boomicicd-cli
 cd /home/$USR/boomi/boomicicd/boomicicd-cli/cli/
 chmod +x scripts/bin/*.*
+chmod +x scripts/home/*.*
 set +e
 
 # download Boomi installers
