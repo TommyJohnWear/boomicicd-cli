@@ -11,7 +11,15 @@ echo "begin boomi install..."
 USR=boomi
 GRP=boomi
 whoami
-
+echo "Cloud Platform : ${platform}"
+echo "Atom Name : ${atomName}"
+echo "Atom Type : ${atomType}"
+echo "Boomi Environment : ${boomiEnv}"
+echo "purge Days : ${purgeHistoryDays}"
+echo "max Memory : ${maxMem}"
+echo "efsMount : ${efsMount}"
+echo "region : ${region}"
+echo "Git Org Name : ${GitOrgName}"
 
 #  create boomi user
 sudo groupadd -g 5151 -r $GRP
@@ -63,9 +71,10 @@ sudo apt-get install -y libxml2-utils -y
 
 mkdir -p  /home/$USR/boomi/boomicicd
 cd /home/$USR/boomi/boomicicd
-echo "git clone https://github.com/UnitedTechnoCloud/boomicicd-cli..."
+echo "git clone https://github.com/$GitOrgName/boomiinstall-cli..."
 git clone https://github.com/$GitOrgName/boomicicd-cli
 cd /home/$USR/boomi/boomicicd/boomicicd-cli/cli/
+chmod +x scripts/bin/*.*
 set +e
 
 # download Boomi installers
@@ -74,21 +83,15 @@ curl -fsSL https://platform.boomi.com/atom/atom_install64.sh -o atom_install64.s
 curl -fsSL https://platform.boomi.com/atom/molecule_install64.sh -o molecule_install64.sh && chmod +x "molecule_install64.sh"
 curl -fsSL https://platform.boomi.com/atom/cloud_install64.sh -o cloud_install64.sh && chmod +x "cloud_install64.sh"
 cp scripts/home/* /home/$USR
-
 # Create the .profile
 cd /home/$USR
-echo "export JAVA_HOME='/usr/bin/java'" > .profile
-echo "export JDK_HOME='/usr/bin/java'" >> .profile
-echo "export JOURNAL_STREAM='9:132367794'" >> .profile
-echo "export LANG='C.utf8'" >> .profile
-echo "export LOGNAME='root'" >> .profile
-echo "export SHLVL='2'" >> .profile           
-echo "export color_prompt=true" >> .profile            
+cp /home/$USR/boomi/boomicicd/boomiinstall-cli/cli/scripts/home/.profile .
+echo "export platform=${platform}" >> .profile            
 chmod u+x /home/$USR/.profile
 echo "if [ -f /home/$USR/.profile ]; then" >> /home/$USR/.bashrc
 echo "	. /home/$USR/.profile" >> /home/$USR/.bashrc
 echo "fi" >> /home/$USR/.bashrc
-cp /home/$USR/boomi/boomicicd/boomicicd-cli/cli/scripts/home/.profile .
+
 if [ "${platform}" = "aws" ]; then
     EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
     EC2_REGION="`echo \"$EC2_AVAIL_ZONE\" | sed 's/[a-z]$//'`"
@@ -113,14 +116,13 @@ echo "install boomi runtime as $USR"
 cd /home/$USR/boomi/boomicicd/boomicicd-cli/cli/scripts
 if [ -n "$efsMount" ] ; then
     echo "setting EFS Mount:${efsMount} ..."
-    source bin/efsMount.sh efsMount=${efsMount}
+    source bin/efsMount.sh efsMount=${efsMount} defaultAWSRegion=${EC2_REGION} platform=${platform}
 fi
 export authToken=${boomiAtmosphereToken}
 export client=${client}
 export group=${group}
 echo "run init.sh..."
-env
-. bin/init.sh atomType=${atomType} atomName=${atomName} env=${boomiEnv} classification=${boomiClassification} accountId=${boomiAccountId} purgeHistoryDays=${purgeHistoryDays} maxMem=${maxMem}
+# . bin/init.sh atomType="${atomType}" atomName="${atomName}" env="${boomiEnv}" classification=${boomiClassification} accountId=${boomiAccountId} purgeHistoryDays=${purgeHistoryDays} maxMem=${maxMem}
 EOF
 
 echo "boomi install complete..."
