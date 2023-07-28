@@ -5,6 +5,7 @@ export DD_API_KEY=${DataDogAPIKey}
 export DD_SITE="datadoghq.com"
 #bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script_agent7.sh)"
+
 . /home/boomi/.profile
 cat <<EOF >> /etc/datadog-agent/datadog.yaml
 tags:
