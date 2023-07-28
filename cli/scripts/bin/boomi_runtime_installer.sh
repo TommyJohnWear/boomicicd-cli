@@ -71,7 +71,7 @@ sudo apt-get install -y libxml2-utils -y
 
 mkdir -p  /home/$USR/boomi/boomicicd
 cd /home/$USR/boomi/boomicicd
-echo "git clone https://github.com/$GitOrgName/boomiinstall-cli..."
+echo "git clone https://github.com/$GitOrgName/boomicicd-cli..."
 git clone https://github.com/$GitOrgName/boomicicd-cli
 cd /home/$USR/boomi/boomicicd/boomicicd-cli/cli/
 chmod +x scripts/bin/*.*
@@ -85,7 +85,7 @@ curl -fsSL https://platform.boomi.com/atom/cloud_install64.sh -o cloud_install64
 cp scripts/home/* /home/$USR
 # Create the .profile
 cd /home/$USR
-cp /home/$USR/boomi/boomicicd/boomiinstall-cli/cli/scripts/home/.profile .
+cp /home/$USR/boomi/boomicicd/boomicicd-cli/cli/scripts/home/.profile .
 echo "export platform=${platform}" >> .profile            
 chmod u+x /home/$USR/.profile
 echo "if [ -f /home/$USR/.profile ]; then" >> /home/$USR/.bashrc
