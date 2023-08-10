@@ -28,10 +28,10 @@ if [[ -z "${defaultAWSRegion}" ]]; then
 	defaultAWSRegion="us-east-2";
 fi
 
-sudo mkdir -p "${mountPoint}/boomi"
+# sudo mkdir -p "${mountPoint}/boomi"
 
-sudo chown -R $serviceUserName "${mountPoint}"
-sudo chown -R $groupName "${mountPoint}"
+# sudo chown -R $serviceUserName "${mountPoint}"
+# sudo chown -R $groupName "${mountPoint}"
 
 ## update fstab
 if [ "${platform}" = "aws" ]; then
@@ -43,3 +43,4 @@ else
 	echo "${efsMount} $mountPoint nfs4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab
 fi
 sudo mount -a
+sudo chown -R $serviceUserName:$groupName "${mountPoint}"
