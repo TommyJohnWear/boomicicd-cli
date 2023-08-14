@@ -38,10 +38,14 @@ init_config:
   - include:
         domain: com.boomi.container.services
         type:
-        - ExecutionManager
-        - MessageQueue
-        - ResourceManager
-        - Scheduler
+          - ExecutionManager
+          - MessageQueue
+          - ResourceManager
+          - Scheduler
+    - include:
+        domain: java.lang
+        attribute:
+          - SystemLoadAverage
 instances:
   - host: 127.0.0.1
     port: 5003
