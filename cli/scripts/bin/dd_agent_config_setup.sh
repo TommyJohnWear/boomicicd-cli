@@ -42,7 +42,7 @@ init_config:
           - MessageQueue
           - ResourceManager
           - Scheduler
-    - include:
+  - include:
         domain: java.lang
         attribute:
           - SystemLoadAverage
