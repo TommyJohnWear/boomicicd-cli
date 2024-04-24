@@ -55,7 +55,7 @@ if [ "${platform}" = "aws" ]; then
     sudo apt-get install -y awscli
     sudo apt-get -y install git binutils
     cd /tmp
-    git clone https://github.com/aws/efs-utils --branch v1.36.0 --single-branch 
+    git clone https://github.com/aws/efs-utils --branch v1.35.0 --single-branch 
     cd /tmp/efs-utils
     ./build-deb.sh
     sudo apt-get -y install ./build/amazon-efs-utils*deb
