@@ -44,7 +44,7 @@ printf "%s\t\t%s\t\t%s\t\t%s\n" $USR "hard" "nofile" "8192" | sudo tee -a /etc/s
 
 # install java
 echo "install java..."
-sudo apt-get update && sudo apt-get install -y java-common -y && sudo apt install nfs-common -y
+sudo apt-get update && sudo apt-get install -y java-common -y
 curl -fssL https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.deb -o amazon-corretto-11-x64-linux-jdk.deb
 sudo dpkg --install amazon-corretto-11-x64-linux-jdk.deb
 cd /usr/lib/jvm/
