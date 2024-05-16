@@ -91,6 +91,7 @@ chmod u+x /home/$USR/.profile
 echo "if [ -f /home/$USR/.profile ]; then" >> /home/$USR/.bashrc
 echo "	. /home/$USR/.profile" >> /home/$USR/.bashrc
 echo "fi" >> /home/$USR/.bashrc
+echo "test 1"
 
 if [ "${platform}" = "aws" ]; then
     EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
@@ -98,7 +99,8 @@ if [ "${platform}" = "aws" ]; then
     echo "export AWS_DEFAULT_REGION=$EC2_REGION" >> .profile	
     source /home/$USR/.profile
 fi
-            
+
+echo  "test 2"
 # set up local directories for install
 mkdir -p /mnt/boomi
 mkdir -p /usr/local/boomi/work
@@ -108,6 +110,7 @@ chown -R $USR:$GRP /mnt/boomi/
 chown -R $USR:$GRP /home/$USR/
 chown -R $USR:$GRP /usr/local/boomi/
 chown -R $USR:$GRP /usr/local/bin/
+echo "test 3"
 whoami
 
 # install boomi
