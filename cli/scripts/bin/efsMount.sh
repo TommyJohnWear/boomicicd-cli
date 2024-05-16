@@ -36,6 +36,7 @@ fi
 ## update fstab
 if [ "${platform}" = "aws" ]; then
 	# sudo mount -t efs -o tls ${efsMount}.efs.${defaultAWSRegion}.amazonaws.com:/ "${mountPoint}"
+    echo "mounting aws efs.."
     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ${efsMount}.efs.${defaultAWSRegion}.amazonaws.com:/ /${mountPoint}
 	echo "${efsMount}.efs.${defaultAWSRegion}.amazonaws.com:/ $mountPoint nfs4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab
 else
