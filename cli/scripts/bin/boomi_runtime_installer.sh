@@ -106,11 +106,12 @@ mkdir -p /mnt/boomi
 mkdir -p /usr/local/boomi/work
 mkdir -p /usr/local/boomi/tmp
 mkdir -p /usr/local/bin
+echo "test 3"
 chown -R $USR:$GRP /mnt/boomi/
 chown -R $USR:$GRP /home/$USR/
 chown -R $USR:$GRP /usr/local/boomi/
 chown -R $USR:$GRP /usr/local/bin/
-echo "test 3"
+echo "test 4"
 whoami
 
 # install boomi
