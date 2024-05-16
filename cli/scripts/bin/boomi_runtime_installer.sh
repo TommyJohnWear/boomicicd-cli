@@ -71,7 +71,7 @@ sudo apt-get install -y libxml2-utils -y
 mkdir -p  /home/$USR/boomi/boomicicd
 cd /home/$USR/boomi/boomicicd
 echo "git clone https://github.com/$GitOrgName/boomicicd-cli..."
-git clone https://github.com/$GitOrgName/boomicicd-cli
+git clone https://github.com/$GitOrgName/boomicicd-cli --branch test --single-branch
 cd /home/$USR/boomi/boomicicd/boomicicd-cli/cli/
 chmod +x scripts/bin/*.*
 chmod +x scripts/home/*.*
