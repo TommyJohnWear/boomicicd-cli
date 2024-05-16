@@ -44,6 +44,6 @@ else
 	echo "mounting ${efsMount}..."
 	echo "${efsMount} $mountPoint nfs4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab
 fi
-sudo chown -R -f $serviceUserName:$groupName "${mountPoint}"
+# sudo chown -R -f $serviceUserName:$groupName "${mountPoint}"
 sudo mount -a
 echo "efs mount is completed.."
