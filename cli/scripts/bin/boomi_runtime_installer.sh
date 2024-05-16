@@ -108,10 +108,13 @@ mkdir -p /usr/local/boomi/tmp
 mkdir -p /usr/local/bin
 echo "test 3"
 chown -R $USR:$GRP /mnt/boomi/
-chown -R $USR:$GRP /home/$USR/
-chown -R $USR:$GRP /usr/local/boomi/
-chown -R $USR:$GRP /usr/local/bin/
 echo "test 4"
+chown -R $USR:$GRP /home/$USR/
+echo "test 5"
+chown -R $USR:$GRP /usr/local/boomi/
+echo "test 6"
+chown -R $USR:$GRP /usr/local/bin/
+echo "test 7"
 whoami
 
 # install boomi
