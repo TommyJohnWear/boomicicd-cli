@@ -46,3 +46,4 @@ else
 fi
 sudo chown -R $serviceUserName:$groupName "${mountPoint}"
 sudo mount -a
+echo "efs mount is completed.."
